@@ -1,0 +1,47 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "extends": ["plugin:react/recommended", "airbnb", "prettier"],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true,
+      "modules": true
+    },
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "plugins": ["react", "@typescript-eslint", "prettier"],
+  "rules": {
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error",
+    "prettier/prettier": "error",
+    "import/extensions": ["error", "never", { "scss": "always" }],
+    "global-require": "off",
+    "no-return-assign": "off",
+    "no-console": "warn",
+    "import/prefer-default-export": "off",
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }]
+  },
+  "settings": {
+    "import/resolver": {
+      "alias": {
+        "map": [["~", "./src"]],
+        "extensions": [".js", ".jsx", ".ts", ".tsx", ".json", ".native.js", ".scss"]
+      },
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx", ".json", ".native.js", ".scss"]
+      }
+    },
+    "react": {
+      "version": "detect"
+    }
+  }
+}
