@@ -8,8 +8,8 @@ import './App.scss';
 const App: React.FC = () => {
   return (
     <div className="app__container">
-      {/* <Dashboard /> */}
-      <Lobby />
+      <Dashboard />
+      {/* <Lobby /> */}
     </div>
   );
 };

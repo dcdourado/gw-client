@@ -15,6 +15,9 @@ const Dashboard: React.FC<DashboardProps> = () => {
         <Lobby playerNumber={1} maxCap={10} />
         <Lobby playerNumber={2} maxCap={10} />
         <Lobby playerNumber={3} maxCap={10} />
+        <Lobby playerNumber={3} maxCap={10} />
+        <Lobby playerNumber={3} maxCap={10} />
+        <Lobby playerNumber={3} maxCap={10} />
       </div>
     </>
   );
