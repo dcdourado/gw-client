@@ -1,0 +1,16 @@
+.dashboard {
+  &__lobbies {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    max-width: 1000px;
+    background-color: gray;
+    padding: 20px;
+    border-radius: 5px;
+
+    > div {
+      margin: 5px;
+    }
+  }
+}

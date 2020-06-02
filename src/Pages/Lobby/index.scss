@@ -1,0 +1,25 @@
+.lobby {
+  &__container {
+    width: 60%;
+
+    display: flex;
+    flex-direction: row;
+
+    background-color: black;
+  }
+
+  &__sidebar {
+    flex: 2;
+
+    display: flex;
+    flex-direction: column;
+
+    background-color: green;
+  }
+
+  &__chat {
+    flex: 8;
+
+    background-color: red;
+  }
+}

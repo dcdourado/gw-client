@@ -1,0 +1,10 @@
+.player-list {
+  &__container {
+    display: flex;
+    flex-direction: column;
+
+    & > div {
+      margin: 5px;
+    }
+  }
+}

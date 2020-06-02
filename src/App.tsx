@@ -1,19 +1,15 @@
 import React from 'react';
 
-import Lobby from './Components/Lobby';
+import Dashboard from './Pages/Dashboard';
+import Lobby from './Pages/Lobby';
 
 import './App.scss';
 
 const App: React.FC = () => {
   return (
-    <div>
-      <h1>Lobbyzada</h1>
-      <div className="app__lobbies">
-        <Lobby playerNumber={0} maxCap={10} />
-        <Lobby playerNumber={1} maxCap={10} />
-        <Lobby playerNumber={2} maxCap={10} />
-        <Lobby playerNumber={3} maxCap={10} />
-      </div>
+    <div className="app__container">
+      {/* <Dashboard /> */}
+      <Lobby />
     </div>
   );
 };
