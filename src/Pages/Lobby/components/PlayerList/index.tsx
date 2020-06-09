@@ -1,16 +1,22 @@
 import React from 'react';
 
+import { User } from '../../../../Utils/Interfaces';
 import Player from './Player';
 
 import './index.scss';
 
-interface PlayerListProps {}
+interface PlayerListProps {
+  players?: User[];
+}
 
-const PlayerList: React.FC<PlayerListProps> = () => {
+const PlayerList: React.FC<PlayerListProps> = (props) => {
+  const { players } = props;
+
   return (
     <div className="player-list__container">
-      <Player username="dcdourado" mmr={100} />
-      <Player username="Bertdev" mmr={120} />
+      {players?.map((player) => (
+        <Player username={player.username} mmr={player.mmr} />
+      ))}
     </div>
   );
 };

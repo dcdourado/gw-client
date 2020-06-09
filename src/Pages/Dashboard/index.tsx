@@ -1,23 +1,36 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
-import Lobby from './components/Lobby';
+import { useStateSelector } from '../../Utils/Hooks';
+import { Api } from '../../Services';
+import { LobbyIndex } from '../../Utils/Interfaces';
+
+import LobbyCard from './components/LobbyCard';
 
 import './index.scss';
 
 interface DashboardProps {}
 
 const Dashboard: React.FC<DashboardProps> = () => {
+  const { auth } = useStateSelector();
+  const { username, mmr } = auth;
+
+  const [lobbies, setLobbies] = useState<LobbyIndex[]>([]);
+
+  const api = Api.getInstance();
+
+  useEffect(() => {
+    api.getLobbies().then((value) => setLobbies(value.data));
+  }, [api]);
+
   return (
     <>
-      <h1>Lobbyzada</h1>
+      <h1>
+        {username} [MMR:{mmr}]
+      </h1>
       <div className="dashboard__lobbies">
-        <Lobby playerNumber={0} maxCap={10} />
-        <Lobby playerNumber={1} maxCap={10} />
-        <Lobby playerNumber={2} maxCap={10} />
-        <Lobby playerNumber={3} maxCap={10} />
-        <Lobby playerNumber={3} maxCap={10} />
-        <Lobby playerNumber={3} maxCap={10} />
-        <Lobby playerNumber={3} maxCap={10} />
+        {lobbies.map((lobby) => (
+          <LobbyCard id={lobby.id} playerNumber={0} maxCap={lobby.size} />
+        ))}
       </div>
     </>
   );
