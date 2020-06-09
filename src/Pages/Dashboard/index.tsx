@@ -29,7 +29,7 @@ const Dashboard: React.FC<DashboardProps> = () => {
       </h1>
       <div className="dashboard__lobbies">
         {lobbies.map((lobby) => (
-          <LobbyCard id={lobby.id} playerNumber={0} maxCap={lobby.size} />
+          <LobbyCard id={lobby.id} playerNumber={0} maxCap={lobby.size} key={`lb-card-${lobby.id}`} />
         ))}
       </div>
     </>
