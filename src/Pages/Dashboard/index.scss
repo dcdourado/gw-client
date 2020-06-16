@@ -1,5 +1,36 @@
 .dashboard {
+  &__header {
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+    &__item {
+      flex: 1;
+
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+
+      background-color: yellow;
+    }
+  }
+
+  &__menu {
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    background-color: blue;
+  }
+
   &__lobbies {
+    width: 60%;
+
     display: flex;
     flex-direction: row;
     justify-content: space-around;

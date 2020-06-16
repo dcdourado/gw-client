@@ -21,11 +21,15 @@ class Api {
     return this.instance;
   }
 
-  postAuth(username: string, password: string) {
-    this.axiosInstance.post('/auth', { username, password }).then((value) => {
+  doAuth(username: string, password: string) {
+    return this.axiosInstance.post('/auth', { username, password }).then((value) => {
       const authUser: AuthUser = value.data;
       store.dispatch(setUser(authUser));
     });
+  }
+
+  createUser(username: string, password: string) {
+    return this.axiosInstance.post('/users', { username, password });
   }
 
   private useToken() {
@@ -33,12 +37,27 @@ class Api {
     this.axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
   }
 
-  getLobbies() {
+  createLobby() {
+    this.useToken();
+    return this.axiosInstance.post('/lobbies');
+  }
+
+  leaveLobby(id: number) {
+    this.useToken();
+    return this.axiosInstance.put(`/lobbies/${id}/leave`);
+  }
+
+  deleteLobby(id: number) {
+    this.useToken();
+    return this.axiosInstance.delete(`/lobbies/${id}`);
+  }
+
+  findLobbies() {
     this.useToken();
     return this.axiosInstance.get('/lobbies');
   }
 
-  getLobby(id: number) {
+  findLobby(id: number) {
     this.useToken();
     return this.axiosInstance.get(`/lobbies/${id}`);
   }

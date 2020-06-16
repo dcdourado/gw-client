@@ -10,6 +10,8 @@ const Login: React.FC<LoginProps> = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
+  const api = Api.getInstance();
+
   const handleUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(event.target.value);
   };
@@ -18,20 +20,29 @@ const Login: React.FC<LoginProps> = () => {
     setPassword(event.target.value);
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const api = Api.getInstance();
-    api.postAuth(username, password);
+    api.doAuth(username, password);
+  };
+
+  const handleRegister = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    event.preventDefault();
+
+    console.log(username, password);
+    api.createUser(username, password).then(() => {
+      setUsername('');
+      setPassword('');
+    });
   };
 
   return (
     <div className="login__container">
-      <form onSubmit={handleSubmit} className="login__form">
-        <input type="text" onChange={handleUsernameChange} />
-        <input type="password" onChange={handlePasswordChange} />
+      <form onSubmit={handleFormSubmit} className="login__form">
+        <input type="text" value={username} onChange={handleUsernameChange} />
+        <input type="password" value={password} onChange={handlePasswordChange} />
         <div className="login__buttons">
-          <button>Register</button>
+          <button onClick={handleRegister}>Register</button>
           <button type="submit">Login</button>
         </div>
       </form>
