@@ -15,7 +15,7 @@ const PlayerList: React.FC<PlayerListProps> = (props) => {
   return (
     <div className="player-list__container">
       {players?.map((player) => (
-        <Player username={player.username} mmr={player.mmr} />
+        <Player username={player.username} mmr={player.mmr} key={`player-${player.id}`} />
       ))}
     </div>
   );
