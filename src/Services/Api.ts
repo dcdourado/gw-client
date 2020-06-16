@@ -61,6 +61,11 @@ class Api {
     this.useToken();
     return this.axiosInstance.get(`/lobbies/${id}`);
   }
+
+  joinLobby(id: number) {
+    this.useToken();
+    return this.axiosInstance.put(`/lobbies/${id}/join`);
+  }
 }
 
 export default Api;

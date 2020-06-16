@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 
 import { Api } from '../../Services';
+import { leaveLobby, playLobby } from '../../Store/Ducks/lobby';
 import { Lobby as LobbyInterface } from '../../Utils/Interfaces';
 import PlayerList from './components/PlayerList';
 
@@ -10,6 +12,7 @@ import './index.scss';
 interface LobbyProps {}
 
 const Lobby: React.FC<LobbyProps> = () => {
+  const dispatch = useDispatch();
   const history = useHistory();
   const params = useParams<{ id: string }>();
   const lobbyId = +params.id;
@@ -24,11 +27,22 @@ const Lobby: React.FC<LobbyProps> = () => {
 
   const handleLeave = () => {
     if (lobby && lobby.players.length > 1) {
-      api.leaveLobby(lobbyId).then(() => history.push('/dashboard'));
+      api.leaveLobby(lobbyId).then(() => {
+        dispatch(leaveLobby());
+        history.push('/dashboard');
+      });
       return;
     }
 
-    api.deleteLobby(lobbyId).then(() => history.push('/dashboard'));
+    api.deleteLobby(lobbyId).then(() => {
+      dispatch(leaveLobby());
+      history.push('/dashboard');
+    });
+  };
+
+  const handlePlay = () => {
+    dispatch(playLobby());
+    history.push(`/lobby/${lobbyId}/play`);
   };
 
   return (
@@ -39,6 +53,7 @@ const Lobby: React.FC<LobbyProps> = () => {
       <div className="lobby__chat">
         <h1>id {lobbyId}</h1>
         <button onClick={handleLeave}>Leave</button>
+        <button onClick={handlePlay}>Play</button>
       </div>
     </div>
   );

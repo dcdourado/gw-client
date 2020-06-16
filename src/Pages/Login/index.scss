@@ -12,9 +12,10 @@
     flex-direction: column;
     align-items: center;
 
-    padding: 10px;
+    background-color: #987654;
+    padding: 25px;
     border-radius: 5px;
-    background-color: green;
+    border: 5px solid #4d3b29;
 
     & > :not(:last-child) {
       margin-bottom: 10px;
@@ -27,7 +28,5 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-
-    background-color: gray;
   }
 }
