@@ -1,6 +1,7 @@
 const Actions = {
   SET_USER: 'auth/SET_USER',
   REMOVE_USER: 'auth/REMOVE_USER',
+  SET_SCORE: 'auth/SET_SCORE',
 };
 
 interface Auth {
@@ -26,6 +27,11 @@ export const removeUser = () => ({
   type: Actions.REMOVE_USER,
 });
 
+export const setScore = (score: number) => ({
+  type: Actions.SET_SCORE,
+  payload: { mmr: score },
+});
+
 type ActionType = ReturnType<typeof setUser>;
 
 const reducer = (state = initialState, action: ActionType): Auth => {
@@ -34,6 +40,8 @@ const reducer = (state = initialState, action: ActionType): Auth => {
       return action.payload;
     case Actions.REMOVE_USER:
       return initialState;
+    case Actions.SET_SCORE:
+      return { ...state, mmr: action.payload.mmr };
     default:
       return state;
   }

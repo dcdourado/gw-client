@@ -17,14 +17,16 @@
   }
 
   &__menu {
-    width: 100%;
+    width: 200px;
 
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
   }
 
   &__lobbies {
+    margin-top: 20px;
+
     width: 60%;
 
     display: flex;
@@ -33,9 +35,10 @@
     flex-wrap: wrap;
 
     max-width: 900px;
-    background-color: gray;
+    background-color: #c39b77;
     padding: 20px;
     border-radius: 5px;
+    border: 3px solid #654321;
 
     > div {
       margin: 5px;

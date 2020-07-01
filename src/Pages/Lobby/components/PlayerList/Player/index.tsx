@@ -14,9 +14,8 @@ const Player: React.FC<PlayerProps> = (props) => {
     <div className="player__container">
       <div className="player__info">
         <span className="player__text player__text__bold">{username}</span>
-        <span className="player__text">MMR: {mmr}</span>
+        <span className="player__text">Score: {mmr}</span>
       </div>
-      <button>Click</button>
     </div>
   );
 };

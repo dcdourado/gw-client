@@ -5,7 +5,10 @@
     display: flex;
     flex-direction: row;
 
+    margin-top: 50px;
     background-color: black;
+    border-radius: 5px;
+    border: 3px solid #654321;
   }
 
   &__sidebar {
@@ -14,12 +17,21 @@
     display: flex;
     flex-direction: column;
 
-    background-color: green;
+    background-color: #b09070;
+    border-right: 4px solid #604321;
   }
 
   &__chat {
     flex: 8;
 
-    background-color: red;
+    padding: 10px;
+    background-color: #b09070;
+
+    &__buttons {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
   }
 }

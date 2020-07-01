@@ -28,6 +28,11 @@ class Api {
     });
   }
 
+  findUserById(id: number) {
+    this.useToken();
+    return this.axiosInstance.get(`/users/${id}`);
+  }
+
   createUser(username: string, password: string) {
     return this.axiosInstance.post('/users', { username, password });
   }

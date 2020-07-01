@@ -51,9 +51,11 @@ const Lobby: React.FC<LobbyProps> = () => {
         <PlayerList players={lobby?.players} />
       </div>
       <div className="lobby__chat">
-        <h1>id {lobbyId}</h1>
-        <button onClick={handleLeave}>Leave</button>
-        <button onClick={handlePlay}>Play</button>
+        <h1>Lobby {lobbyId}</h1>
+        <div className="lobby__chat__buttons">
+          <button onClick={handleLeave}>Leave</button>
+          <button onClick={handlePlay}>Play</button>
+        </div>
       </div>
     </div>
   );

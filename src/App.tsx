@@ -28,12 +28,8 @@ const App: React.FC = () => {
               <Route path="/dashboard">
                 {lobby.id === -1 ? <Dashboard /> : <Redirect push to={`/lobby/${lobby.id}`} />}
               </Route>
-              <Route exact path="/lobby/:id">
-                {lobby.id !== -1 ? <Lobby /> : <Redirect push to="/dashboard" />}
-              </Route>
-              <Route exact path="/lobby/:id/play">
-                {lobby.playing ? <Match /> : <Redirect push to="/dashboard" />}
-              </Route>
+              <Route exact path="/lobby/:id" component={Lobby} />
+              <Route exact path="/lobby/:id/play" component={Match} />
             </>
           ) : (
             <Login />

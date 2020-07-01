@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import { Api } from '../../Services';
 import { removeUser } from '../../Store/Ducks/auth';
+import { joinLobby } from '../../Store/Ducks/lobby';
 import { useStateSelector } from '../../Utils/Hooks';
 import { LobbyIndex } from '../../Utils/Interfaces';
 
@@ -24,9 +25,13 @@ const Dashboard: React.FC<DashboardProps> = () => {
 
   const api = Api.getInstance();
 
-  useEffect(() => {
+  const refreshLobbies = useCallback(() => {
     api.findLobbies().then((value) => setLobbies(value.data));
   }, [api]);
+
+  useEffect(() => {
+    refreshLobbies();
+  }, [refreshLobbies]);
 
   const handleExit = () => {
     dispatch(removeUser());
@@ -36,17 +41,20 @@ const Dashboard: React.FC<DashboardProps> = () => {
     api.createLobby().then((value) => {
       const createdLobby: LobbyIndex = value.data;
       history.push(`/lobby/${createdLobby.id}`);
+      dispatch(joinLobby(createdLobby.id));
     });
   };
+
+  const handleRefreshLobbies = () => {
+    refreshLobbies();
+  }
 
   return (
     <>
       <div className="dashboard__header">
         <div className="dashboard__header__item" />
         <div className="dashboard__header__item">
-          <h1>
-            {username} [MMR:{mmr}]
-          </h1>
+          <h1>{username} Score:{mmr}</h1>
         </div>
         <div className="dashboard__header__item">
           <button onClick={handleExit}>Exit</button>
@@ -54,6 +62,7 @@ const Dashboard: React.FC<DashboardProps> = () => {
       </div>
       <div className="dashboard__menu">
         <button onClick={handleCreateLobby}>Create Lobby</button>
+        <button onClick={handleRefreshLobbies}>Refresh</button>
       </div>
       <div className="dashboard__lobbies">
         {lobbies.map((lobby) => (
